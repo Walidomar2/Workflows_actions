@@ -1,4 +1,4 @@
-name: Create new command in new issues 
+name: Print Issue Number and Context
 
 on:
   issues:
@@ -8,8 +8,10 @@ jobs:
   add-issue-command:
     runs-on: ubuntu-latest
     steps:
-      - name: "github context"
-        run: echo '${{ toJSON(github.event) }}' | jq
+      - name: Echo Issue Number
+        run: echo '${{ github.event.issue.number }}'
         shell: bash
 
-    
+      - name: "GitHub Context"
+        run: echo '${{ toJSON(github.event) }}' | jq
+        shell: bash
