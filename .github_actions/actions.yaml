@@ -21,9 +21,6 @@ jobs:
   goodbye:
     runs-on: ubuntu-latest
     steps:
-      -name: goodbye world
-       run: echo "Goodbye World"
-       shell: bash 
-
-
-  
+      - name: goodbye world  # Corrected indentation
+        run: echo "Goodbye World"
+        shell: bash  # Moved shell declaration under run
