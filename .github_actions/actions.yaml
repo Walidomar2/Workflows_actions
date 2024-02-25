@@ -1,8 +1,9 @@
-name: Hello World Workflow
+name: Hello World workflow
 
 on:
   push:
-    - master
+    branches:
+      - master
   pull_request:
     branches:
       - master
