@@ -2,23 +2,25 @@ name: Create new command in new issues
 
 on:
   issues:
-    types:  [opened, edited]
+    types: [opened, edited]
     
 jobs:
   add-issue-command:
     runs-on: ubuntu-latest
     steps:
-    - name: "github context"
-      run: echo '${{ toJSON(github.event) }}' | jq
-      shell: bash
-       
-    - name: Add assigness
-      uses: actions-cool/issues-helper@v3
-      with:
-        actions: 'add-assignees'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-number: ${{ github.event.issue.number }}
-        assignees: 'xxx'
-        random-to: 1
-    
+      - name: "github context"
+        run: echo '${{ toJSON(github.event) }}' | jq
+        shell: bash
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'
+
     
